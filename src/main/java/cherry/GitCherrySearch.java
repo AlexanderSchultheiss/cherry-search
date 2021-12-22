@@ -140,7 +140,7 @@ public class GitCherrySearch implements CherrySearch {
             //            (but how could we ensure then that this id refers to a cherry pick?)
 
             if(message.contains("cherry picked from commit")){
-                String[] messageComponents = message.split("\s");
+                String[] messageComponents = message.split("\\s");
                 String sourceId = messageComponents[messageComponents.length - 1];
                 sourceId = sourceId.strip().replace(")", "");
 

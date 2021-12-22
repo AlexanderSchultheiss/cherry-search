@@ -3,13 +3,49 @@ package util;
 import java.util.Date;
 import java.util.Objects;
 
-public record Commit(String id, Branch branch, String message, Date timestamp) {
+public final class Commit {
+    private final String id;
+    private final Branch branch;
+    private final String message;
+    private final Date timestamp;
 
-    public boolean after(Commit commit){
+    Commit(String id, Branch branch, String message, Date timestamp) {
+        this.id = id;
+        this.branch = branch;
+        this.message = message;
+        this.timestamp = timestamp;
+    }
+
+    public String id() {
+        return id;
+    }
+
+    public Branch branch() {
+        return branch;
+    }
+
+    public String message() {
+        return message;
+    }
+
+    public Date timestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Commit[" +
+                "id=" + id + ", " +
+                "branch=" + branch + ", " +
+                "message=" + message + ", " +
+                "timestamp=" + timestamp + ']';
+    }
+
+    public boolean after(Commit commit) {
         return this.timestamp().after(commit.timestamp());
     }
 
-    public boolean before(Commit commit){
+    public boolean before(Commit commit) {
         return this.timestamp().before(commit.timestamp());
     }
 
